@@ -9,8 +9,6 @@ def on_message(client, userdata, msg):
 	c = conn.cursor()
 	c.execute("INSERT into sensors VALUES(?,?)",(msg.payload[0], msg.payload[1]))
 	conn.commit()
-	print(msg.payload[0])
-	print(msg.payload[1])
 
 client = mqtt.Client()
 client.on_connect = on_connect
