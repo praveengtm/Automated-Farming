@@ -1,10 +1,16 @@
 import paho.mqtt.client as mqtt
+import sqlite3
 
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
 	client.subscribe("fromEsp8266")
 def on_message(client, userdata, msg):
-	print(msg.topic+" "+str(msg.payload))
+	conn = sqlite3.connect('sensor.db')
+	c = conn.cursor()
+	c.execute("INSERT into sensors VALUES(?,?)",(msg.payload[0], msg.payload[1]))
+	conn.commit()
+	print(msg.payload[0])
+	print(msg.payload[1])
 
 client = mqtt.Client()
 client.on_connect = on_connect
