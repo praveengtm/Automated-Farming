@@ -11,7 +11,7 @@ String data;
 
 const char* wifi_network = "******";
 const char* wifi_pass = "******";
-const char* mqtt_serv_address = "192.168.1.70"                                                                                                                                                                  ;
+const char* mqtt_serv_address = "ip-address"                                                                                                                                                                  ;
 const int mqtt_port_number = 1883;
 
 WiFiClient espClient;
