@@ -1,0 +1,37 @@
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+ <script type="text/javascript">
+    window.onload = setupRefresh;
+    function setupRefresh()
+    {
+        setInterval("refreshBlock();",3000);
+    }
+    
+    function refreshBlock()
+    {
+       $('#time').load(location.href + " #time");
+    }
+  </script>
+  <div id = "time" style="text-align: center;font-size: 2rem;color: orange">
+    <h1 style="text-align: center">Latest 5 obtained data</h1>
+    {% if length != 0 %}
+  {% for object in objects %}
+  <a href = '{% url "more" object.sampleindex %}' style="text-decoration: none">
+  <div id = '{{ object.sampleindex }}' style="padding-top: 15px">
+	Humidity: {{ object.humidity }}
+	<br>
+	Temperature: {{ object.temperature }}
+	<br>
+ <br>
+  <div>
+  </a>
+  <hr style="width: 50%;height: 5px">
+
+	{% endfor %}
+  {% else %}
+  No data recorded
+  {% endif %}
+
+	</div>	
+	
+
